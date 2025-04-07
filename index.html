@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CosmicBuild - PC Performants et Élégants</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        
+        /* Styles existants */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: hsl(267, 47%, 4%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background-color: #0a0a0a;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .details-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.details-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.3s ease;
+}
+
+.nav a {
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav a:hover {
+    color: #00bcd4;
+    transform: scale(1.1);
+}
+.details-button:hover::before {
+    left: 100%;
+
+    
+}
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo span {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover {
+            color: #007acc;
+        }
+/* Ajoutez une animation fade-in */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    
+}
+
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+        /* Styles pour le menu burger */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 25px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .burger-menu div {
+            background-color: #fff;
+            height: 3px;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .mobile-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            margin: 15px 0;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav a:hover {
+            color: #007acc;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #000, #111);
+            animation: fadeIn 1.5s ease-out;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #fff;
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-logo {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            opacity: 0.08;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .about {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #111;
+        }
+
+        .about h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background-color: #111;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card h3 {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            color: #fff;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .details-button {
+            display: inline-block;
+            background-color: #007acc;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            margin: 20px auto 0;
+        }
+
+        .details-button:hover {
+            background-color: #005f99;
+        }
+
+        .testimonials {
+            padding: 60px 20px;
+            background-color: #000;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .testimonials p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: linear-gradient(135deg, rgb(0, 0, 0), rgba(17, 17, 17, 0.705)), 
+                    url('bannervertical.png'); /* Ajoutez le dégradé et l'image */
+        background-size: cover; /* L'image couvre tout l'arrière-plan */
+        background-position: center; /* Centrez l'image */
+        background-repeat: no-repeat; /* Empêche la répétition de l'image */
+        animation: fadeIn 1.5s ease-out;
+        overflow: hidden;
+    }
+
+    .hero-logo {
+        display: none; /* Supprimez l'ancien logo si nécessaire */
+    }
+
+    .hero-logo {
+        display: none; /* Supprimez l'ancien logo si nécessaire */
+    }
+    </style>
+</head>
+
+<body>
+    <!-- En-tête avec le logo -->
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="CosmicBuild Logo">
+            <span>CosmicBuild</span>
+        </div>
+        <nav class="nav">
+            <a href="#hero">Accueil</a>
+            <a href="#about">À propos</a>
+            <a href="details.html" >Nos PC</a>
+            <a href="#testimonials">Avis</a>
+        </nav>
+        <div class="burger-menu" id="burger-menu">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </header>
+
+    <div class="mobile-nav" id="mobile-nav">
+        <a href="#hero">Accueil</a>
+        <a href="#about">À propos</a>
+        <a href="details.html">Nos PC</a>
+        <a href="#testimonials">Avis</a>
+        <a href="details.html">Détails</a>
+    </div>
+
+    <!-- Section Hero -->
+    <div id="particles-js"></div>
+    <section class="hero" id="hero" style="margin-bottom: -20px;">
+        <div class="hero-content">
+            <h1>Des PC Performants et Élégants</h1>
+            <p>Découvrez nos configurations haut de gamme, pensées pour allier performance et design minimaliste.</p>
+            <a href="details.html" class="cta-button">Voir nos PC</a>
+        </div>
+        
+        <img src="bannervertical.png" alt="CosmicBuild bannervertical" class="hero-logo">
+    </section>
+
+    <!-- Section À propos -->
+    <section class="about" id="about" style="margin-top: 0;">
+        <h2>À propos de CosmicBuild</h2>
+        <p>Nos PC sont conçus pour répondre aux besoins des gamers, des créateurs de contenu et des monteurs vidéos. Chaque configuration est soigneusement assemblée pour offrir une expérience utilisateur exceptionnelle.</p>
+    </section>
+
+    <!-- Section PC Pré-assemblés -->
+    <section id="prebuild">
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-content">
+                    <h3>PC Starter</h3>
+                    <div class="price">999 €</div>
+                    <p>Un PC compact et silencieux, idéal pour la bureautique et le gaming léger.</p>
+                    <ul>
+                        <li>Processeur : Ryzen 5 5600</li>
+                        <li>RAM : 16 Go DDR4</li>
+                        <li>Stockage : 512 Go SSD</li>
+                        <li>Carte graphique : 3060 8GB</li>
+                    </ul>
+                </div>
+                <a href="details.html" class="details-button">Détails</a>
+            </div>
+           
+            <div class="card">
+                <div class="card-content">
+                    <h3>PC Gamer Plus</h3>
+                    <div class="price">1499 €</div>
+                    <p>Un PC puissant pour les gamers, parfait pour le gaming en 1080p et 1440p.</p>
+                    <ul>
+                        <li>Processeur : Ryzen 5 7500F</li>
+                        <li>RAM : 16 Go DDR5</li>
+                        <li>Stockage : 1 To SSD NVMe</li>
+                        <li>Carte graphique : 4060</li>
+                    </ul>
+                </div>
+                <a href="details.html" class="details-button">Détails</a>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3>PC Creator Pro</h3>
+                    <div class="price">2999 €</div>
+                    <p>Un PC haut de gamme pour les créateurs et gamers exigeants, idéal pour le gaming 4K.</p>
+                    <ul>
+                        <li>Processeur : Ryzen 5 9800X3D</li>
+                        <li>RAM : 32 Go DDR5</li>
+                        <li>Stockage : 2 To SSD NVMe</li>
+                        <li>Carte graphique : 5080</li>
+                    </ul>
+                </div>
+                <a href="details.html" class="details-button">Détails</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 CosmicBuild - Performances et Élégance</p>
+    </footer>
+
+    <style>
+        /* Animation pour le menu burger */
+        .burger-menu div {
+            background-color: #fff;
+            height: 3px;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+    
+        .burger-menu.active div:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+    
+        .burger-menu.active div:nth-child(2) {
+            opacity: 0;
+        }
+    
+        .burger-menu.active div:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+    
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            transition: opacity 0.3s ease;
+        }
+    
+        .mobile-nav.active {
+            display: flex;
+            opacity: 1;
+        }
+    </style>
+    
+    <script>
+        // Script pour le menu burger
+        const burgerMenu = document.getElementById('burger-menu');
+        const mobileNav = document.getElementById('mobile-nav');
+        const navLinks = document.querySelectorAll('.mobile-nav a');
+    
+        burgerMenu.addEventListener('click', () => {
+            burgerMenu.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+        });
+    
+        // Fermer le menu mobile lorsqu'un lien est cliqué
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                burgerMenu.classList.remove('active');
+                mobileNav.classList.remove('active');
+            });
+        });
+        
+    </script>
+    <script>
+        const sections = document.querySelectorAll('.section');
+    
+        window.addEventListener('scroll', () => {
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    section.classList.add('visible');
+                }
+            });
+        });
+    </script>
+    <script>
+        particlesJS.load('particles-js', 'particles.json', function() {
+            console.log('Particles.js loaded');
+        });
+    </script>
+    <script>
+        sap.from('#prebuild .card', { opacity: 0, y: 50, duration: 1, stagger: 0.2 });
+        gsap.from('.hero-content', { opacity: 0, y: 50, duration: 1 });
+        gsap.from('.card', { opacity: 0, y: 50, duration: 1, stagger: 0.2 });
+    </script>
+    <script>
+        const buttons = document.querySelectorAll('.cta-button');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const audio = new Audio('click-sound.mp3');
+                audio.play();
+            });
+        });
+    </script>
+    
+    </section>
+</body>
+</html>
