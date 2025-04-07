@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <meta charset="UTF-8">
@@ -10,7 +10,6 @@
     <title>CosmicBuild - PC Performants et Élégants</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        
         /* Styles existants */
         * {
             margin: 0;
@@ -38,39 +37,51 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        .loading-bar {
+            position: fixed;
+            top: 60px; /* Ajustez en fonction de la hauteur de la barre de navigation */
+            left: 0;
+            width: 0;
+            height: 4px;
+            background-color: violet;
+            z-index: 1001;
+            transition: width 0.2s ease;
+        }
+
         .logo {
             display: flex;
             align-items: center;
         }
+
         .details-button {
-    position: relative;
-    overflow: hidden;
-}
+            position: relative;
+            overflow: hidden;
+        }
 
-.details-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    transition: left 0.3s ease;
-}
+        .details-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+        }
 
-.nav a {
-    transition: color 0.3s ease, transform 0.3s ease;
-}
+        .nav a {
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
 
-.nav a:hover {
-    color: #00bcd4;
-    transform: scale(1.1);
-}
-.details-button:hover::before {
-    left: 100%;
+        .nav a:hover {
+            color: #00bcd4;
+            transform: scale(1.1);
+        }
 
-    
-}
+        .details-button:hover::before {
+            left: 100%;
+        }
+
         .logo img {
             height: 40px;
             margin-right: 10px;
@@ -97,19 +108,19 @@
         .nav a:hover {
             color: #007acc;
         }
-/* Ajoutez une animation fade-in */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    
-}
 
+        /* Ajoutez une animation fade-in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
 
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* Styles pour le menu burger */
         .burger-menu {
             display: none;
@@ -330,30 +341,6 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .hero {
-        position: relative;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        background: linear-gradient(135deg, rgb(0, 0, 0), rgba(17, 17, 17, 0.705)), 
-                    url('bannervertical.png'); /* Ajoutez le dégradé et l'image */
-        background-size: cover; /* L'image couvre tout l'arrière-plan */
-        background-position: center; /* Centrez l'image */
-        background-repeat: no-repeat; /* Empêche la répétition de l'image */
-        animation: fadeIn 1.5s ease-out;
-        overflow: hidden;
-    }
-
-    .hero-logo {
-        display: none; /* Supprimez l'ancien logo si nécessaire */
-    }
-
-    .hero-logo {
-        display: none; /* Supprimez l'ancien logo si nécessaire */
-    }
     </style>
 </head>
 
@@ -367,7 +354,7 @@
         <nav class="nav">
             <a href="#hero">Accueil</a>
             <a href="#about">À propos</a>
-            <a href="details.html" >Nos PC</a>
+            <a href="details.html">Nos PC</a>
             <a href="#testimonials">Avis</a>
         </nav>
         <div class="burger-menu" id="burger-menu">
@@ -376,14 +363,7 @@
             <div></div>
         </div>
     </header>
-
-    <div class="mobile-nav" id="mobile-nav">
-        <a href="#hero">Accueil</a>
-        <a href="#about">À propos</a>
-        <a href="details.html">Nos PC</a>
-        <a href="#testimonials">Avis</a>
-        <a href="details.html">Détails</a>
-    </div>
+    <div class="loading-bar" id="loading-bar"></div>
 
     <!-- Section Hero -->
     <div id="particles-js"></div>
@@ -393,7 +373,6 @@
             <p>Découvrez nos configurations haut de gamme, pensées pour allier performance et design minimaliste.</p>
             <a href="details.html" class="cta-button">Voir nos PC</a>
         </div>
-        
         <img src="bannervertical.png" alt="CosmicBuild bannervertical" class="hero-logo">
     </section>
 
@@ -420,7 +399,6 @@
                 </div>
                 <a href="details.html" class="details-button">Détails</a>
             </div>
-           
             <div class="card">
                 <div class="card-content">
                     <h3>PC Gamer Plus</h3>
@@ -456,59 +434,17 @@
         <p>&copy; 2025 CosmicBuild - Performances et Élégance</p>
     </footer>
 
-    <style>
-        /* Animation pour le menu burger */
-        .burger-menu div {
-            background-color: #fff;
-            height: 3px;
-            border-radius: 2px;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-    
-        .burger-menu.active div:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-    
-        .burger-menu.active div:nth-child(2) {
-            opacity: 0;
-        }
-    
-        .burger-menu.active div:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
-    
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-            transition: opacity 0.3s ease;
-        }
-    
-        .mobile-nav.active {
-            display: flex;
-            opacity: 1;
-        }
-    </style>
-    
     <script>
         // Script pour le menu burger
         const burgerMenu = document.getElementById('burger-menu');
         const mobileNav = document.getElementById('mobile-nav');
         const navLinks = document.querySelectorAll('.mobile-nav a');
-    
+
         burgerMenu.addEventListener('click', () => {
             burgerMenu.classList.toggle('active');
             mobileNav.classList.toggle('active');
         });
-    
+
         // Fermer le menu mobile lorsqu'un lien est cliqué
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -516,11 +452,20 @@
                 mobileNav.classList.remove('active');
             });
         });
-        
+
+        // Script pour la barre de chargement
+        const loadingBar = document.getElementById('loading-bar');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            loadingBar.style.width = scrollPercent + '%';
+        });
     </script>
     <script>
         const sections = document.querySelectorAll('.section');
-    
+
         window.addEventListener('scroll', () => {
             sections.forEach(section => {
                 const rect = section.getBoundingClientRect();
@@ -549,7 +494,5 @@
             });
         });
     </script>
-    
-    </section>
 </body>
 </html>
