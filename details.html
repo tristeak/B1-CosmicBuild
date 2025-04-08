@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez les détails des configurations PC haut de gamme de CosmicBuild.">
+    <meta name="keywords" content="PC, Gaming, Créateurs, Performances, CosmicBuild">
+    <meta name="author" content="CosmicBuild">
     <title>Détails des PC - CosmicBuild</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
+        /* Styles généraux */
         * {
             margin: 0;
             padding: 0;
@@ -19,6 +24,7 @@
             overflow-x: hidden;
         }
 
+        /* En-tête */
         .header {
             background-color: #000;
             padding: 1rem 2rem;
@@ -35,17 +41,6 @@
 
         .header.scrolled {
             background-color: rgba(0, 0, 0, 0.9);
-        }
-
-        .loading-bar {
-            position: fixed;
-            top: 60px; /* Ajustez en fonction de la hauteur de la barre de navigation */
-            left: 0;
-            width: 0;
-            height: 4px;
-            background-color: violet;
-            z-index: 1001;
-            transition: width 0.2s ease;
         }
 
         .logo {
@@ -67,7 +62,6 @@
         .nav-links {
             display: flex;
             gap: 20px;
-            transition: opacity 0.3s ease-in-out;
         }
 
         .nav-links a {
@@ -83,6 +77,7 @@
             transform: scale(1.1);
         }
 
+        /* Menu mobile */
         .burger {
             display: none;
             flex-direction: column;
@@ -152,7 +147,69 @@
                 display: flex;
             }
         }
+/* Mise en page en grille pour 3 colonnes */
+.grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
 
+    .details-card {
+        background-color: hsl(270, 7%, 5%);
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .details-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    .details-card h2 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        color: #fff;
+    }
+
+    .details-card .price {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #f39c12;
+        margin: 15px 0;
+    }
+
+    .details-card p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #ccc;
+    }
+
+    .details-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .details-card ul li {
+        margin-bottom: 10px;
+        color: #aaa;
+    }
+        /* Barre de chargement */
+        .loading-bar {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background-color: violet;
+            z-index: 1001;
+            transition: width 0.2s ease;
+        }
+
+        /* Section Hero */
         .hero {
             height: 50vh;
             display: flex;
@@ -160,10 +217,10 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(17, 17, 17, 0.8)), url('backround.png') no-repeat center center;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(17, 17, 17, 0.8)), url('background.png') no-repeat center center;
             background-size: cover;
             animation: fadeIn 1.5s ease-out;
-            margin-top: 80px; /* Adjust for fixed header */
+            margin-top: 80px;
         }
 
         .hero h1 {
@@ -181,6 +238,7 @@
             animation: fadeIn 1.5s ease-out;
         }
 
+        /* Section Détails */
         .details-container {
             padding: 40px 20px;
             display: flex;
@@ -221,6 +279,7 @@
             color: #ccc;
         }
 
+        /* Pied de page */
         footer {
             background-color: #000;
             color: #fff;
@@ -230,6 +289,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -242,7 +302,7 @@
     </style>
 </head>
 <body>
-    <!-- En-tête avec le logo et la navigation -->
+    <!-- En-tête -->
     <header class="header" id="header">
         <div class="logo">
             <img src="logo.png" alt="CosmicBuild Logo">
@@ -274,49 +334,88 @@
         <p>Explorez les spécifications et caractéristiques de nos configurations haut de gamme.</p>
     </section>
 
-    <section class="details-container">
-        <div class="grid">
-            <div class="details-card">
-                <h2>PC Starter</h2>
-                <p>Un PC compact et silencieux, idéal pour la bureautique et le gaming léger.</p>
-                <ul>
-                    <li>Processeur : Ryzen 5 5600</li>
-                    <li>RAM : 16 Go DDR4</li>
-                    <li>Stockage : 512 Go SSD</li>
-                    <li>Carte graphique : NVIDIA Geforce RTX 3060</li>
-                    <li>Système d'exploitation : Windows 11 Home</li>
-                </ul>
-            </div>
-            <div class="details-card">
-                <h2>PC Gamer Plus</h2>
-                <p>Un PC puissant pour les gamers, parfait pour le gaming en 1080p et 1440p.</p>
-                <ul>
-                    <li>Processeur : Ryzen 5 7500F</li>
-                    <li>RAM : 16 Go DDR5</li>
-                    <li>Stockage : 1 To SSD NVMe</li>
-                    <li>Carte graphique : NVIDIA Geforce RTX 4060</li>
-                    <li>Système d'exploitation : Windows 11 Home</li>
-                </ul>
-            </div>
-            <div class="details-card">
-                <h2>PC Creator Pro</h2>
-                <p>Un PC haut de gamme pour les créateurs et gamers exigeants, idéal pour le gaming 4K.</p>
-                <ul>
-                    <li>Processeur : Ryzen 5 9800X3D</li>
-                    <li>RAM : 32 Go DDR5</li>
-                    <li>Stockage : 2 To SSD NVMe</li>
-                    <li>Carte graphique : NVIDIA Geforce RTX 5080</li>
-                    <li>Système d'exploitation : Windows 11 Pro</li>
-                </ul>
-            </div>
+ <!-- Section Détails -->
+<section class="details-container">
+    <div class="grid">
+        <!-- PC Budget -->
+        <div class="details-card">
+            <h2>PC Budget</h2>
+            <p>Un PC abordable pour la bureautique et le gaming léger.</p>
+            <ul>
+                <li>Processeur : Intel Core i3-12100F</li>
+                <li>RAM : 8 Go DDR4</li>
+                <li>Stockage : 256 Go SSD</li>
+                <li>Carte graphique : NVIDIA Geforce GTX 1650</li>
+                <li>Système d'exploitation : Windows 11 Home</li>
+            </ul>
+            <div class="price">600 €</div>
         </div>
-    </section>
 
+        <!-- PC Starter -->
+        <div class="details-card">
+            <h2>PC Starter</h2>
+            <p>Un PC compact et silencieux, idéal pour la bureautique et le gaming léger.</p>
+            <ul>
+                <li>Processeur : Ryzen 5 5600</li>
+                <li>RAM : 16 Go DDR4</li>
+                <li>Stockage : 512 Go SSD</li>
+                <li>Carte graphique : NVIDIA Geforce RTX 3060</li>
+                <li>Système d'exploitation : Windows 11 Home</li>
+            </ul>
+            <div class="price">800 €</div>
+        </div>
+
+        <!-- PC Gamer Plus -->
+        <div class="details-card">
+            <h2>PC Gamer Plus</h2>
+            <p>Un PC puissant pour les gamers, parfait pour le gaming en 1080p et 1440p.</p>
+            <ul>
+                <li>Processeur : Ryzen 5 7500F</li>
+                <li>RAM : 16 Go DDR5</li>
+                <li>Stockage : 1 To SSD NVMe</li>
+                <li>Carte graphique : NVIDIA Geforce RTX 4060</li>
+                <li>Système d'exploitation : Windows 11 Home</li>
+            </ul>
+            <div class="price">1500 €</div>
+        </div>
+
+        <!-- PC Creator -->
+        <div class="details-card">
+            <h2>PC Creator</h2>
+            <p>Un PC conçu pour les créateurs de contenu, idéal pour le montage vidéo et la retouche photo.</p>
+            <ul>
+                <li>Processeur : Intel Core i7-13700K</li>
+                <li>RAM : 32 Go DDR5</li>
+                <li>Stockage : 2 To SSD NVMe</li>
+                <li>Carte graphique : NVIDIA Geforce RTX 4070 Ti</li>
+                <li>Système d'exploitation : Windows 11 Pro</li>
+            </ul>
+            <div class="price">2500 €</div>
+        </div>
+
+        <!-- PC Creator Pro -->
+        <div class="details-card">
+            <h2>PC Creator Pro</h2>
+            <p>Un PC haut de gamme pour les créateurs et gamers exigeants, idéal pour le gaming 4K.</p>
+            <ul>
+                <li>Processeur : Ryzen 9 9800X3D</li>
+                <li>RAM : 64 Go DDR5</li>
+                <li>Stockage : 4 To SSD NVMe</li>
+                <li>Carte graphique : NVIDIA Geforce RTX 5090</li>
+                <li>Système d'exploitation : Windows 11 Pro</li>
+            </ul>
+            <div class="price">5000 €</div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pied de page -->
     <footer>
         <p>&copy; 2025 CosmicBuild - Performances et Élégance</p>
     </footer>
 
     <script>
+        // Menu burger
         function toggleMenu() {
             const burger = document.getElementById('burger');
             const mobileNav = document.getElementById('mobileNav');
@@ -324,6 +423,7 @@
             mobileNav.classList.toggle('active');
         }
 
+        // Barre de chargement et effet de défilement
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
             const loadingBar = document.getElementById('loading-bar');
