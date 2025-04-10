@@ -1,444 +1,110 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Découvrez les détails des configurations PC haut de gamme de CosmicBuild.">
-    <meta name="keywords" content="PC, Gaming, Créateurs, Performances, CosmicBuild">
-    <meta name="author" content="CosmicBuild">
-    <title>Détails des PC - CosmicBuild</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <style>
-        /* Styles généraux */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: #0a0a0a;
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        /* En-tête */
-        .header {
-            background-color: #000;
-            padding: 1rem 2rem;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: background-color 0.3s ease-in-out;
-        }
-
-        .header.scrolled {
-            background-color: rgba(0, 0, 0, 0.9);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 40px;
-            margin-right: 10px;
-        }
-
-        .logo span {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #fff;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 1rem;
-            font-weight: 400;
-            transition: color 0.3s, transform 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #f39c12;
-            transform: scale(1.1);
-        }
-
-        /* Menu mobile */
-        .burger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .burger div {
-            width: 25px;
-            height: 3px;
-            background-color: #fff;
-            transition: all 0.3s;
-        }
-
-        .burger.active div:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .burger.active div:nth-child(2) {
-            opacity: 0;
-        }
-
-        .burger.active div:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            height: 100%;
-            width: 200px;
-            background-color: #111;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
-            padding: 2rem;
-            flex-direction: column;
-            gap: 20px;
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .mobile-nav.active {
-            display: flex;
-            transform: translateX(0);
-        }
-
-        .mobile-nav a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 1.2rem;
-            font-weight: 400;
-            transition: color 0.3s, transform 0.3s;
-        }
-
-        .mobile-nav a:hover {
-            color: #f39c12;
-            transform: translateX(10px);
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .burger {
-                display: flex;
-            }
-        }
-/* Mise en page en grille pour 3 colonnes */
-.grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-        padding: 20px;
-    }
-
-    .details-card {
-        background-color: hsl(270, 7%, 5%);
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-        transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .details-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 20px rgba(0, 0, 0, 0.8);
-    }
-
-    .details-card h2 {
-        font-size: 1.8rem;
-        margin-bottom: 10px;
-        color: #fff;
-    }
-
-    .details-card .price {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #f39c12;
-        margin: 15px 0;
-    }
-
-    .details-card p {
-        font-size: 1rem;
-        line-height: 1.6;
-        color: #ccc;
-    }
-
-    .details-card ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .details-card ul li {
-        margin-bottom: 10px;
-        color: #aaa;
-    }
-        /* Barre de chargement */
-        .loading-bar {
-            position: fixed;
-            top: 60px;
-            left: 0;
-            width: 0;
-            height: 4px;
-            background-color: violet;
-            z-index: 1001;
-            transition: width 0.2s ease;
-        }
-
-        /* Section Hero */
-        .hero {
-            height: 50vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(17, 17, 17, 0.8)), url('background.png') no-repeat center center;
-            background-size: cover;
-            animation: fadeIn 1.5s ease-out;
-            margin-top: 80px;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            animation: slideIn 1s ease-out;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-            animation: fadeIn 1.5s ease-out;
-        }
-
-        /* Section Détails */
-        .details-container {
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            animation: fadeIn 1.5s ease-out;
-        }
-
-        .details-card {
-            background-color: hsl(270, 7%, 5%);
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .details-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.8);
-        }
-
-        .details-card h2 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .details-card .price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #f39c12;
-            margin: 15px 0;
-        }
-
-        .details-card p {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #ccc;
-        }
-
-        /* Pied de page */
-        footer {
-            background-color: #000;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            margin-top: 50px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(-100%); }
-            to { transform: translateX(0); }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détails des PC - CosmicBuild</title>
+  <meta name="description" content="Découvrez les détails des configurations PC haut de gamme de CosmicBuild.">
+  <meta name="keywords" content="PC, Gaming, Créateurs, Performances, CosmicBuild">
+  <meta name="author" content="CosmicBuild">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background-color: #0a0a0a; color: #fff; overflow-x: hidden; }
+    .header { background-color: #000; padding: 1rem 2rem; position: fixed; width: 100%; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .logo { display: flex; align-items: center; }
+    .logo img { height: 40px; margin-right: 10px; }
+    .logo span { font-size: 1.5rem; font-weight: 600; color: #fff; }
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links a { text-decoration: none; color: #fff; font-size: 1rem; transition: color 0.3s, transform 0.3s; }
+    .nav-links a:hover { color: #f39c12; transform: scale(1.1); }
+    .cart-icon { cursor: pointer; color: #f39c12; font-size: 1.4rem; margin-left: 20px; transition: transform 0.2s; }
+    .cart-icon:hover { transform: scale(1.2); }
+    .hero { position: relative; height: 100vh; background: url('hero-image.jpg') no-repeat center center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; }
+    .hero h1 { font-size: 3rem; color: #fff; margin-bottom: 1rem; text-shadow: 0 0 10px rgba(0,0,0,0.7); }
+    .hero p { font-size: 1.2rem; max-width: 800px; color: #ddd; text-shadow: 0 0 5px rgba(0,0,0,0.5); }
+    .search-bar { padding: 1rem 2rem; background-color: #111; text-align: center; }
+    .search-bar input { width: 300px; padding: 10px; border-radius: 8px; border: none; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 2rem; }
+    .details-card { background-color: hsl(270, 7%, 5%); border-radius: 8px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); display: flex; flex-direction: column; justify-content: space-between; }
+    .details-card:hover { transform: translateY(-10px); box-shadow: 0 15px 20px rgba(0,0,0,0.8); }
+    .details-card h2 { font-size: 1.8rem; margin-bottom: 10px; color: #fff; }
+    .details-card .price { font-size: 1.5rem; font-weight: bold; color: #f39c12; margin: 15px 0; }
+    .details-card p { font-size: 1rem; color: #ccc; margin-bottom: 1rem; }
+    .details-card ul { list-style: none; padding: 0; margin: 0; color: #aaa; }
+    .details-card ul li { margin-bottom: 10px; }
+    .details-button { background-color: #003366; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; text-decoration: none; font-weight: bold; margin-top: 15px; cursor: pointer; transition: background-color 0.3s ease, transform 0.3s ease; }
+    .details-button:hover { background-color: #00509e; transform: scale(1.05); }
+    footer { background-color: #000; color: #fff; text-align: center; padding: 20px; margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.1); }
+  </style>
 </head>
 <body>
-    <!-- En-tête -->
-    <header class="header" id="header">
-        <div class="logo">
-            <img src="logo.png" alt="CosmicBuild Logo">
-            <span>CosmicBuild</span>
-        </div>
-        <nav class="nav-links">
-            <a href="index.html">Accueil</a>
-            <a href="about.html">À propos</a>
-            <a href="details.html">Nos PC</a>
-            <a href="reviews.html">Avis</a>
-        </nav>
-        <div class="burger" id="burger" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <nav class="mobile-nav" id="mobileNav">
-            <a href="index.html">Accueil</a>
-            <a href="about.html">À propos</a>
-            <a href="details.html">Nos PC</a>
-            <a href="reviews.html">Avis</a>
-        </nav>
-    </header>
-    <div class="loading-bar" id="loading-bar"></div>
-
-    <!-- Section Hero -->
-    <section class="hero">
-        <h1>Détails des PC</h1>
-        <p>Explorez les spécifications et caractéristiques de nos configurations haut de gamme.</p>
-    </section>
-
- <!-- Section Détails -->
-<section class="details-container">
-    <div class="grid">
-        <!-- PC Budget -->
-        <div class="details-card">
-            <h2>PC Budget</h2>
-            <p>Un PC abordable pour la bureautique et le gaming léger.</p>
-            <ul>
-                <li>Processeur : Intel Core i3-12100F</li>
-                <li>RAM : 8 Go DDR4</li>
-                <li>Stockage : 256 Go SSD</li>
-                <li>Carte graphique : NVIDIA Geforce GTX 1650</li>
-                <li>Système d'exploitation : Windows 11 Home</li>
-            </ul>
-            <div class="price">600 €</div>
-        </div>
-
-        <!-- PC Starter -->
-        <div class="details-card">
-            <h2>PC Starter</h2>
-            <p>Un PC compact et silencieux, idéal pour la bureautique et le gaming léger.</p>
-            <ul>
-                <li>Processeur : Ryzen 5 5600</li>
-                <li>RAM : 16 Go DDR4</li>
-                <li>Stockage : 512 Go SSD</li>
-                <li>Carte graphique : NVIDIA Geforce RTX 3060</li>
-                <li>Système d'exploitation : Windows 11 Home</li>
-            </ul>
-            <div class="price">800 €</div>
-        </div>
-
-        <!-- PC Gamer Plus -->
-        <div class="details-card">
-            <h2>PC Gamer Plus</h2>
-            <p>Un PC puissant pour les gamers, parfait pour le gaming en 1080p et 1440p.</p>
-            <ul>
-                <li>Processeur : Ryzen 5 7500F</li>
-                <li>RAM : 16 Go DDR5</li>
-                <li>Stockage : 1 To SSD NVMe</li>
-                <li>Carte graphique : NVIDIA Geforce RTX 4060</li>
-                <li>Système d'exploitation : Windows 11 Home</li>
-            </ul>
-            <div class="price">1500 €</div>
-        </div>
-
-        <!-- PC Creator -->
-        <div class="details-card">
-            <h2>PC Creator</h2>
-            <p>Un PC conçu pour les créateurs de contenu, idéal pour le montage vidéo et la retouche photo.</p>
-            <ul>
-                <li>Processeur : Intel Core i7-13700K</li>
-                <li>RAM : 32 Go DDR5</li>
-                <li>Stockage : 2 To SSD NVMe</li>
-                <li>Carte graphique : NVIDIA Geforce RTX 4070 Ti</li>
-                <li>Système d'exploitation : Windows 11 Pro</li>
-            </ul>
-            <div class="price">2500 €</div>
-        </div>
-
-        <!-- PC Creator Pro -->
-        <div class="details-card">
-            <h2>PC Creator Pro</h2>
-            <p>Un PC haut de gamme pour les créateurs et gamers exigeants, idéal pour le gaming 4K.</p>
-            <ul>
-                <li>Processeur : Ryzen 9 9800X3D</li>
-                <li>RAM : 64 Go DDR5</li>
-                <li>Stockage : 4 To SSD NVMe</li>
-                <li>Carte graphique : NVIDIA Geforce RTX 5090</li>
-                <li>Système d'exploitation : Windows 11 Pro</li>
-            </ul>
-            <div class="price">5000 €</div>
-        </div>
+  <header class="header">
+    <div class="logo">
+      <img src="logo.png" alt="Logo CosmicBuild">
+      <span>CosmicBuild</span>
     </div>
-</section>
+    <nav class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="about.html">À propos</a>
+      <a href="details.html">Nos PC</a>
+      <a href="reviews.html">Avis</a>
+    </nav>
+    <span class="cart-icon" onclick="window.location='cart.html'">🛒</span>
+  </header>
 
-    <!-- Pied de page -->
-    <footer>
-        <p>&copy; 2025 CosmicBuild - Performances et Élégance</p>
-    </footer>
+  <section class="hero">
+    <h1>Détails des PC</h1>
+    <p>Explorez les spécifications et caractéristiques de nos configurations haut de gamme.</p>
+  </section>
 
-    <script>
-        // Menu burger
-        function toggleMenu() {
-            const burger = document.getElementById('burger');
-            const mobileNav = document.getElementById('mobileNav');
-            burger.classList.toggle('active');
-            mobileNav.classList.toggle('active');
-        }
+  <section class="search-bar">
+    <input type="text" id="searchInput" placeholder="Rechercher un PC...">
+  </section>
 
-        // Barre de chargement et effet de défilement
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            const loadingBar = document.getElementById('loading-bar');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+  <section class="grid" id="productGrid"></section>
 
-            // Mise à jour de la barre de chargement
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            loadingBar.style.width = scrollPercent + '%';
-        });
-    </script>
+  <footer>
+    <p>&copy; 2025 CosmicBuild - Performances et Élégance</p>
+  </footer>
+
+  <script>
+    const products = [
+      { id: 'p1', name: 'P1 Budget', desc: 'PC bureautique/gaming léger', specs: ['Intel i3', '8 Go', '256 Go SSD', 'GTX 1650'], price: 549 },
+      { id: 'p2', name: 'P2 Starter', desc: 'Compact et silencieux', specs: ['Ryzen 5 5600', '16 Go', '512 Go SSD', 'RTX 3060'], price: 799 },
+      { id: 'p3', name: 'P3 Gamer', desc: 'Gaming 1080p/1440p', specs: ['Ryzen 5 7500F', '16 Go DDR5', '1 To SSD', 'RTX 4060'], price: 1099 },
+      { id: 'p4', name: 'P4 Creator', desc: 'Création de contenu', specs: ['i7-13700K', '32 Go DDR5', '2 To SSD', 'RTX 4070 Ti'], price: 1699 },
+      { id: 'p5', name: 'P5 Creator Pro', desc: 'Gaming 4K & Pro', specs: ['Ryzen 9 7950X', '64 Go DDR5', '4 To SSD', 'RTX 4090'], price: 2999 },
+    ];
+
+    function renderProducts(list) {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = list.map(p => `
+        <div class="details-card">
+          <h2>${p.name}</h2>
+          <p>${p.desc}</p>
+          <ul>${p.specs.map(s => `<li>${s}</li>`).join('')}</ul>
+          <div class="price">${p.price}€</div>
+          <a href="product.html?id=${p.id}" class="details-button">Détails</a>
+          <button class="details-button" onclick='addToCart(${JSON.stringify(p)})'>Ajouter au panier</button>
+        </div>
+      `).join('');
+    }
+
+    function addToCart(product) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push(product);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${product.name} ajouté au panier.`);
+    }
+
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      const keyword = e.target.value.toLowerCase();
+      const filtered = products.filter(p => p.name.toLowerCase().includes(keyword) || p.desc.toLowerCase().includes(keyword));
+      renderProducts(filtered);
+    });
+
+    renderProducts(products);
+  </script>
 </body>
 </html>
