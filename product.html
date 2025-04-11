@@ -3,117 +3,88 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Produit - CosmicBuild</title>
+  <title>Fiche Produit - CosmicBuild</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #0a0a0a;
-      color: #fff;
-    }
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 2rem;
-    }
-    .product {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      background: #111;
-      padding: 2rem;
-      border-radius: 12px;
-    }
-    .product img {
-      max-width: 100%;
-      border-radius: 8px;
-      flex: 1 1 300px;
-    }
-    .product-details {
-      flex: 1 1 300px;
-    }
-    .product-details h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    .product-details ul {
-      list-style: none;
-      padding: 0;
-      color: #ccc;
-    }
-    .product-details li {
-      margin-bottom: 0.5rem;
-    }
-    .price {
-      font-size: 1.5rem;
-      color: #f39c12;
-      margin: 1rem 0;
-    }
-    .btn {
-      background-color: #003366;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background-color: #00509e;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: #0a0a0a; color: #fff; }
+    .container { max-width: 1200px; margin: auto; padding: 2rem; }
+    header { background: #000; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .logo { display: flex; align-items: center; }
+    .logo img { height: 40px; margin-right: 10px; }
+    .logo span { font-size: 1.5rem; font-weight: bold; color: #fff; }
+    .nav { display: flex; gap: 1.5rem; }
+    .nav a { color: #fff; text-decoration: none; font-weight: 500; transition: 0.3s; }
+    .nav a:hover { color: #00bcd4; }
+    .product { display: flex; flex-wrap: wrap; gap: 2rem; background: #111; padding: 2rem; border-radius: 12px; margin-top: 3rem; }
+    .product img { max-width: 100%; border-radius: 10px; flex: 1 1 400px; }
+    .product-info { flex: 1 1 400px; }
+    .product-info h1 { font-size: 2.2rem; margin-bottom: 1rem; }
+    .product-info p { font-size: 1.1rem; color: #ccc; margin-bottom: 1rem; }
+    .product-info ul { list-style: none; padding: 0; color: #aaa; }
+    .product-info li { margin-bottom: 0.5rem; }
+    .price { font-size: 1.8rem; color: #f39c12; font-weight: bold; margin: 1.2rem 0; }
+    .btn { display: inline-block; background-color: #007acc; color: #fff; padding: 12px 30px; border-radius: 6px; font-weight: bold; border: none; cursor: pointer; transition: 0.3s; text-decoration: none; }
+    .btn:hover { background-color: #005f99; }
+    footer { text-align: center; padding: 2rem; background: #000; color: #777; margin-top: 3rem; font-size: 0.9rem; }
   </style>
 </head>
 <body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Logo CosmicBuild">
+      <span>CosmicBuild</span>
+    </div>
+    <nav class="nav">
+      <a href="index.html">Accueil</a>
+      <a href="details.html">Nos PC</a>
+      <a href="cart.html">Panier</a>
+    </nav>
+  </header>
+
   <div class="container">
-    <div class="product" id="product"></div>
+    <div id="product" class="product"></div>
   </div>
+
+  <footer>
+    <p>&copy; 2025 CosmicBuild. Tous droits réservés.</p>
+  </footer>
 
   <script>
     const products = [
       {
-        id: 'p1', name: 'P1 Budget', desc: 'PC bureautique/gaming léger', specs: ['Intel i3', '8 Go DDR4', '256 Go SSD', 'GTX 1650'], price: 549, image: 'pc1.jpg'
+        id: 'p1', name: 'PC Starter', desc: 'Compact et silencieux, idéal bureautique/gaming léger', specs: ['Ryzen 5 5600', '16 Go DDR4', '512 Go SSD', 'RTX 3060'], price: 999, image: 'pc1.jpg'
       },
       {
-        id: 'p2', name: 'P2 Starter', desc: 'Compact et silencieux', specs: ['Ryzen 5 5600', '16 Go DDR4', '512 Go SSD', 'RTX 3060'], price: 799, image: 'pc2.jpg'
+        id: 'p2', name: 'PC Gamer Plus', desc: 'Parfait pour le gaming en 1080p/1440p', specs: ['Ryzen 5 7500F', '16 Go DDR5', '1 To SSD NVMe', 'RTX 4060'], price: 1499, image: 'pc2.jpg'
       },
       {
-        id: 'p3', name: 'P3 Gamer', desc: 'Gaming 1080p/1440p', specs: ['Ryzen 5 7500F', '16 Go DDR5', '1 To SSD', 'RTX 4060'], price: 1099, image: 'pc3.jpg'
-      },
-      {
-        id: 'p4', name: 'P4 Creator', desc: 'Création de contenu', specs: ['i7-13700K', '32 Go DDR5', '2 To SSD', 'RTX 4070 Ti'], price: 1699, image: 'pc4.jpg'
-      },
-      {
-        id: 'p5', name: 'P5 Creator Pro', desc: 'Gaming 4K & Pro', specs: ['Ryzen 9 7950X', '64 Go DDR5', '4 To SSD', 'RTX 4090'], price: 2999, image: 'pc5.jpg'
+        id: 'p3', name: 'PC Creator Pro', desc: 'Ultra haut de gamme pour le gaming 4K', specs: ['Ryzen 9 9800X3D', '32 Go DDR5', '2 To SSD NVMe', 'RTX 5080'], price: 2999, image: 'pc3.jpg'
       }
     ];
 
     const params = new URLSearchParams(window.location.search);
-    const productId = params.get('id');
-    const product = products.find(p => p.id === productId);
-
+    const id = params.get('id');
+    const product = products.find(p => p.id === id);
     const container = document.getElementById('product');
 
     if (product) {
       container.innerHTML = `
-        <img src="${product.image}" alt="${product.name}" />
-        <div class="product-details">
+        <img src="${product.image}" alt="${product.name}">
+        <div class="product-info">
           <h1>${product.name}</h1>
           <p>${product.desc}</p>
-          <ul>
-            ${product.specs.map(spec => `<li>${spec}</li>`).join('')}
-          </ul>
+          <ul>${product.specs.map(s => `<li>${s}</li>`).join('')}</ul>
           <div class="price">${product.price}€</div>
           <button class="btn" onclick='addToCart(${JSON.stringify(product)})'>Ajouter au panier</button>
         </div>
       `;
     } else {
-      container.innerHTML = `<p>Produit introuvable.</p>`;
+      container.innerHTML = '<p>Produit introuvable.</p>';
     }
 
     function addToCart(product) {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
       cart.push(product);
       localStorage.setItem('cart', JSON.stringify(cart));
       alert(`${product.name} ajouté au panier.`);

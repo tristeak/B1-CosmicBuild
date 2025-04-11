@@ -3,93 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Détails des PC - CosmicBuild</title>
-  <meta name="description" content="Découvrez les détails des configurations PC haut de gamme de CosmicBuild.">
-  <meta name="keywords" content="PC, Gaming, Créateurs, Performances, CosmicBuild">
-  <meta name="author" content="CosmicBuild">
+  <title>Nos PC - CosmicBuild</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-    body { background-color: #0a0a0a; color: #fff; overflow-x: hidden; }
-    .header { background-color: #000; padding: 1rem 2rem; position: fixed; width: 100%; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    body { background: #0a0a0a; color: #fff; }
+    header { position: fixed; top: 0; left: 0; width: 100%; background: #000; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
     .logo { display: flex; align-items: center; }
     .logo img { height: 40px; margin-right: 10px; }
-    .logo span { font-size: 1.5rem; font-weight: 600; color: #fff; }
-    .nav-links { display: flex; gap: 20px; }
-    .nav-links a { text-decoration: none; color: #fff; font-size: 1rem; transition: color 0.3s, transform 0.3s; }
-    .nav-links a:hover { color: #f39c12; transform: scale(1.1); }
-    .cart-icon { cursor: pointer; color: #f39c12; font-size: 1.4rem; margin-left: 20px; transition: transform 0.2s; }
-    .cart-icon:hover { transform: scale(1.2); }
-    .hero { position: relative; height: 100vh; background: url('hero-image.jpg') no-repeat center center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; }
-    .hero h1 { font-size: 3rem; color: #fff; margin-bottom: 1rem; text-shadow: 0 0 10px rgba(0,0,0,0.7); }
-    .hero p { font-size: 1.2rem; max-width: 800px; color: #ddd; text-shadow: 0 0 5px rgba(0,0,0,0.5); }
-    .search-bar { padding: 1rem 2rem; background-color: #111; text-align: center; }
-    .search-bar input { width: 300px; padding: 10px; border-radius: 8px; border: none; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 2rem; }
-    .details-card { background-color: hsl(270, 7%, 5%); border-radius: 8px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); display: flex; flex-direction: column; justify-content: space-between; }
-    .details-card:hover { transform: translateY(-10px); box-shadow: 0 15px 20px rgba(0,0,0,0.8); }
-    .details-card h2 { font-size: 1.8rem; margin-bottom: 10px; color: #fff; }
-    .details-card .price { font-size: 1.5rem; font-weight: bold; color: #f39c12; margin: 15px 0; }
-    .details-card p { font-size: 1rem; color: #ccc; margin-bottom: 1rem; }
-    .details-card ul { list-style: none; padding: 0; margin: 0; color: #aaa; }
-    .details-card ul li { margin-bottom: 10px; }
-    .details-button { background-color: #003366; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; text-decoration: none; font-weight: bold; margin-top: 15px; cursor: pointer; transition: background-color 0.3s ease, transform 0.3s ease; }
-    .details-button:hover { background-color: #00509e; transform: scale(1.05); }
-    footer { background-color: #000; color: #fff; text-align: center; padding: 20px; margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.1); }
+    .logo span { font-size: 1.5rem; font-weight: bold; color: #fff; }
+    .nav { display: flex; gap: 1.5rem; }
+    .nav a { color: #fff; text-decoration: none; font-weight: 500; transition: 0.3s; }
+    .nav a:hover { color: #00bcd4; }
+    .hero {height: auto;padding: 6rem 2rem 4rem;background: linear-gradient(to right, #0a0a0a, #111111), url('hero-image.jpg') no-repeat center center/cover;text-align: center;}
+    .hero h1 {font-size: 2.5rem;margin-bottom: 1rem;color: #fff;text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);}
+    .hero p {font-size: 1.1rem;color: #ccc;max-width: 800px;margin: 0 auto;text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);}
+    .search-bar { padding: 2rem; background: #111; text-align: center; }
+    .search-bar input { width: 60%; padding: 0.8rem; border-radius: 10px; border: none; font-size: 1rem; }
+    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 2rem; }
+    .card { background: #111; border-radius: 10px; padding: 1.5rem; box-shadow: 0 8px 20px rgba(0,0,0,0.5); transition: 0.3s; }
+    .card:hover { transform: translateY(-10px); box-shadow: 0 15px 25px rgba(0,0,0,0.8); }
+    .card h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .card p { font-size: 1rem; color: #ccc; margin-bottom: 1rem; }
+    .card ul { list-style: none; padding: 0; margin: 0 0 1rem; color: #aaa; }
+    .card ul li { margin-bottom: 0.4rem; }
+    .price { font-size: 1.4rem; font-weight: bold; color: #f39c12; margin-bottom: 1rem; }
+    .card a, .card button { display: inline-block; padding: 0.6rem 1.2rem; margin: 0.5rem 0.2rem 0 0; border: none; border-radius: 6px; text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; }
+    .card a { background: #007acc; color: #fff; }
+    .card a:hover { background: #005f99; }
+    .card button { background: transparent; border: 2px solid #f39c12; color: #f39c12; }
+    .card button:hover { background: #f39c12; color: #000; }
+    footer { text-align: center; padding: 2rem; background: #000; color: #777; font-size: 0.9rem; }
   </style>
 </head>
 <body>
-  <header class="header">
+  <header>
     <div class="logo">
-      <img src="logo.png" alt="Logo CosmicBuild">
+      <img src="logo.png" alt="CosmicBuild">
       <span>CosmicBuild</span>
     </div>
-    <nav class="nav-links">
+    <nav class="nav">
       <a href="index.html">Accueil</a>
-      <a href="about.html">À propos</a>
       <a href="details.html">Nos PC</a>
-      <a href="reviews.html">Avis</a>
+      <a href="cart.html">Panier</a>
     </nav>
-    <span class="cart-icon" onclick="window.location='cart.html'">🛒</span>
   </header>
 
   <section class="hero">
-    <h1>Détails des PC</h1>
+    <h1>Nos PC</h1>
     <p>Explorez les spécifications et caractéristiques de nos configurations haut de gamme.</p>
   </section>
 
   <section class="search-bar">
-    <input type="text" id="searchInput" placeholder="Rechercher un PC...">
+    <input type="text" id="searchInput" placeholder="Rechercher un modèle...">
   </section>
 
-  <section class="grid" id="productGrid"></section>
+  <section class="products" id="productGrid"></section>
 
   <footer>
-    <p>&copy; 2025 CosmicBuild - Performances et Élégance</p>
+    <p>&copy; 2025 CosmicBuild. Tous droits réservés.</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
+    AOS.init();
+
     const products = [
-      { id: 'p1', name: 'P1 Budget', desc: 'PC bureautique/gaming léger', specs: ['Intel i3', '8 Go', '256 Go SSD', 'GTX 1650'], price: 549 },
-      { id: 'p2', name: 'P2 Starter', desc: 'Compact et silencieux', specs: ['Ryzen 5 5600', '16 Go', '512 Go SSD', 'RTX 3060'], price: 799 },
-      { id: 'p3', name: 'P3 Gamer', desc: 'Gaming 1080p/1440p', specs: ['Ryzen 5 7500F', '16 Go DDR5', '1 To SSD', 'RTX 4060'], price: 1099 },
-      { id: 'p4', name: 'P4 Creator', desc: 'Création de contenu', specs: ['i7-13700K', '32 Go DDR5', '2 To SSD', 'RTX 4070 Ti'], price: 1699 },
-      { id: 'p5', name: 'P5 Creator Pro', desc: 'Gaming 4K & Pro', specs: ['Ryzen 9 7950X', '64 Go DDR5', '4 To SSD', 'RTX 4090'], price: 2999 },
+      { id: 'p1', name: 'PC Starter', desc: 'Compact et silencieux, idéal bureautique/gaming léger', specs: ['Ryzen 5 5600', '16 Go DDR4', '512 Go SSD', 'RTX 3060'], price: 999 },
+      { id: 'p2', name: 'PC Gamer Plus', desc: 'Parfait pour le gaming en 1080p/1440p', specs: ['Ryzen 5 7500F', '16 Go DDR5', '1 To SSD NVMe', 'RTX 4060'], price: 1499 },
+      { id: 'p3', name: 'PC Creator Pro', desc: 'Ultra haut de gamme pour le gaming 4K', specs: ['Ryzen 9 9800X3D', '32 Go DDR5', '2 To SSD NVMe', 'RTX 5080'], price: 2999 }
     ];
 
-    function renderProducts(list) {
-      const grid = document.getElementById('productGrid');
+    const grid = document.getElementById('productGrid');
+    const input = document.getElementById('searchInput');
+
+    function render(list) {
       grid.innerHTML = list.map(p => `
-        <div class="details-card">
+        <div class="card" data-aos="fade-up">
           <h2>${p.name}</h2>
           <p>${p.desc}</p>
           <ul>${p.specs.map(s => `<li>${s}</li>`).join('')}</ul>
           <div class="price">${p.price}€</div>
-          <a href="product.html?id=${p.id}" class="details-button">Détails</a>
-          <button class="details-button" onclick='addToCart(${JSON.stringify(p)})'>Ajouter au panier</button>
+          <a href="product.html?id=${p.id}">Voir</a>
+          <button onclick='addToCart(${JSON.stringify(p)})'>Ajouter au panier</button>
         </div>
       `).join('');
     }
+
+    input.addEventListener('input', e => {
+      const val = e.target.value.toLowerCase();
+      const filtered = products.filter(p => p.name.toLowerCase().includes(val) || p.desc.toLowerCase().includes(val));
+      render(filtered);
+    });
 
     function addToCart(product) {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -98,13 +104,7 @@
       alert(`${product.name} ajouté au panier.`);
     }
 
-    document.getElementById('searchInput').addEventListener('input', (e) => {
-      const keyword = e.target.value.toLowerCase();
-      const filtered = products.filter(p => p.name.toLowerCase().includes(keyword) || p.desc.toLowerCase().includes(keyword));
-      renderProducts(filtered);
-    });
-
-    renderProducts(products);
+    render(products);
   </script>
 </body>
 </html>
